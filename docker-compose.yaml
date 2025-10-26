@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  docusaurus:
+    image: docusaurus-automation:prod
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ../notes/docs:/app/blog:ro
+      - ./repos.json:/app/repos.json:ro
+      # - ./src:/app/src:Z
+      # - ./static:/app/static:Z
+      # - ./docusaurus.config.js:/app/docusaurus.config.js:Z
+      # - ./sidebars.js:/app/sidebars.js:Z

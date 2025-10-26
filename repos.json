@@ -1,0 +1,8 @@
+[
+  {
+    "name": "project-alpha",
+    "url": "https://github.com/motangpuar/c-ran-installation.git",
+    "docs_path": "docs",
+    "target_path": "docs/project-alpha"
+  }
+]
