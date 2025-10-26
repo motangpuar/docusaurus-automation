@@ -1,13 +1,6 @@
 // @ts-check
-// `@type` JSDoc annotations allow editor autocompletion and type checking
-// (when paired with `@ts-check`).
-// There are various equivalent ways to declare your Docusaurus config.
-// See: https://docusaurus.io/docs/api/docusaurus-config
-
 import {themes as prismThemes} from 'prism-react-renderer';
 import remarkGithubAlerts from 'remark-github-blockquote-alert';
-
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const fs = require('fs');
 const path = require('path');
@@ -23,8 +16,13 @@ const docsPlugins = repos.map(repo => [
   },
 ]);
 
-const searchPaths = repos.map(repo => `page/${repo.name}`);
+const navbarItems = repos.map(repo => ({
+  to: `/page/${repo.name}`,
+  label: repo.name.charAt(0).toUpperCase() + repo.name.slice(1).replace(/-/g, ' '),
+  position: 'left',
+}));
 
+const searchPaths = repos.map(repo => `page/${repo.name}`);
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -32,34 +30,25 @@ const config = {
   tagline: 'BMW: Lab Notes',
   favicon: 'img/favicon.ico',
 
-  // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
-    v4: true, // Improve compatibility with the upcoming Docusaurus v4
+    v4: true,
   },
 
-  // Set the production url of your site here
   url: 'https://bmw.ece.ntust.edu.tw',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/docs/',
 
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'facebook',
+  projectName: 'docusaurus',
 
-  //onBrokenLinks: 'throw',
   onBrokenLinks: 'warn',
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
   },
 
   plugins: [
+    ...docsPlugins,  // ADD THIS - spread the dynamic plugins
     'docusaurus-plugin-image-zoom',
     [
       '@docusaurus/plugin-ideal-image',
@@ -75,8 +64,9 @@ const config = {
       '@easyops-cn/docusaurus-search-local',
       {
         hashed: true,
-        indexBlog: true,
-        blogRouteBasePath: '/blog',
+        indexBlog: false,  // Changed to false since blog is disabled
+        docsRouteBasePath: searchPaths,
+        docsPluginIdForPreferredVersion: repos.length > 0 ? repos[0].name : undefined,
       },
     ],
   ],
@@ -98,87 +88,35 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       colorMode: {
         respectPrefersColorScheme: true,
       },
-       zoom: {
-          selector: '.markdown :not(em) > img',
-          background: {
-            light: 'rgba(255, 255, 255, 0.95)',
-            dark: 'rgba(50, 50, 50, 0.95)'
-          },
-          config: {
-            margin: 24,
-            scrollOffset: 0,
-          }
+      zoom: {
+        selector: '.markdown :not(em) > img',
+        background: {
+          light: 'rgba(255, 255, 255, 0.95)',
+          dark: 'rgba(50, 50, 50, 0.95)'
         },
-          navbar: {
-        //title: 'YMA Notes',
+        config: {
+          margin: 24,
+          scrollOffset: 0,
+        }
+      },
+      navbar: {
         logo: {
           alt: 'Logo',
           src: 'img/logo.png',
         },
         items: [
-          // {
-          //   type: 'docSidebar',
-          //   sidebarId: 'tutorialSidebar',
-          //   position: 'left',
-          //   label: 'Tutorial',
-          // },
-          {to: '/blog', label: 'Study Notes', position: 'left'},
-          {to: '/pages', label: 'Lab Notes', position: 'left'},
-          {to: '/guides', label: 'Guides', position: 'left'},
-          // {
-          //   href: 'https://github.com/facebook/docusaurus',
-          //   label: 'GitHub',
-          //   position: 'right',
-          // },
+          ...navbarItems,  // Use dynamic navbar items from repos.json
+          // Remove hardcoded links to /blog, /pages, /guides if they don't exist
         ],
       },
       footer: {
         style: 'dark',
         links: [
-          {
-            title: 'Docs',
-            items: [
-              {
-                label: 'Tutorial',
-                to: '/docs/intro',
-              },
-            ],
-          },
-          // {
-          //   title: 'Community',
-          //   items: [
-          //     {
-          //       label: 'Stack Overflow',
-          //       href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-          //     },
-          //     {
-          //       label: 'Discord',
-          //       href: 'https://discordapp.com/invite/docusaurus',
-          //     },
-          //     {
-          //       label: 'X',
-          //       href: 'https://x.com/docusaurus',
-          //     },
-          //   ],
-          // },
-          // {
-          //   title: 'More',
-          //   items: [
-          //     {
-          //       label: 'Blog',
-          //       to: '/blog',
-          //     },
-          //     {
-          //       label: 'GitHub',
-          //       href: 'https://github.com/facebook/docusaurus',
-          //     },
-          //   ],
-          // },
+          // Remove or update footer links
         ],
         copyright: `Copyright © ${new Date().getFullYear()} OSC Asia Pasific Lab. Built with Docusaurus.`,
       },
