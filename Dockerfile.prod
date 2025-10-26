@@ -6,7 +6,7 @@ RUN npm install
 COPY docusaurus.config.js sidebars.js ./
 COPY src/ ./src/
 COPY static/ ./static/
-#COPY docs/ ./docs/
+COPY docs/ ./docs/
 #COPY blog/ ./blog/
 COPY repos.json ./repos.json
 RUN npm run build
