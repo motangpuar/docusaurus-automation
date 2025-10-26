@@ -17,9 +17,11 @@ const docsPlugins = repos.map(repo => [
 ]);
 
 const navbarItems = repos.map(repo => ({
-  to: `/page/${repo.name}`,
-  label: repo.name.charAt(0).toUpperCase() + repo.name.slice(1).replace(/-/g, ' '),
+  type: 'doc',
+  docId: 'intro',  // ✅ Links to intro.md in each docs plugin
+  docsPluginId: repo.name,
   position: 'left',
+  label: repo.name.charAt(0).toUpperCase() + repo.name.slice(1).replace(/-/g, ' '),
 }));
 
 const searchPaths = repos.map(repo => `page/${repo.name}`);

@@ -4,6 +4,7 @@ services:
   docusaurus:
     #image: docusaurus-automation:prod
     image: bmw.ece.ntust.edu.tw/infidel/docusaurus:latest
+    pull_policy: always
     # build:
     #   context: .
     #   dockerfile: Dockerfile
