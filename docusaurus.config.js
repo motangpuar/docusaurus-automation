@@ -33,6 +33,12 @@ const config = {
   future: {
     v4: true,
   },
+  markdown: {
+    hooks: {
+      onBrokenMarkdownImages: 'ignore', // or 'warn'
+    },
+  },
+
 
   url: 'https://bmw.ece.ntust.edu.tw',
   baseUrl: '/docs/',
@@ -41,6 +47,7 @@ const config = {
   projectName: 'docusaurus',
 
   onBrokenLinks: 'warn',
+
 
   i18n: {
     defaultLocale: 'en',
