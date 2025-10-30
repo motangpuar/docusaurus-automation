@@ -170,12 +170,24 @@ html[data-theme='dark'] .navbar__item {
   background: var(--ntust-pale-blue);
   color: var(--ifm-color-primary);
 }
-
-.menu__link--active {
+/* Regular active links - keep white on blue */
+.menu__link--active:not(.menu__link--sublist) {
   background: linear-gradient(90deg, var(--ifm-color-primary) 0%, var(--ntust-light-blue) 100%);
   color: white;
   font-weight: 600;
   border-left: 3px solid var(--ntust-sky-blue);
+}
+
+/* Active category links - different styling */
+.menu__link--active.menu__link--sublist {
+  background: transparent;
+  color: var(--ifm-color-primary);
+  font-weight: 700;
+  border-left: 3px solid var(--ifm-color-primary);
+}
+
+[data-theme='dark'] .menu__link--active.menu__link--sublist {
+  color: var(--ntust-sky-blue);
 }
 
 .menu__list-item-collapsible:hover {
