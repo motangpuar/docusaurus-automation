@@ -24,24 +24,23 @@ pipeline {
     }
 
     stages {
-        stage('Clone Main Repo') {
-            steps {
-                script {
-                    withCredentials([usernamePassword(
-                        credentialsId: params.GIT_CREDENTIAL_ID,
-                        usernameVariable: 'GIT_USER',
-                        passwordVariable: 'GIT_PASS'
-                    )]) {
-                        def cleanUrl = params.DOCUSAURUS_REPO.replaceAll('^https?://', '')
-                        sh """
-                            rm -rf * .git
-                            git clone https://\${GIT_USER}:\${GIT_PASS}@${cleanUrl} .
-                        """
-                    }
-                }
-            }
-        }
-
+        // stage('Clone Main Repo') {
+        //     steps {
+        //         script {
+        //             withCredentials([usernamePassword(
+        //                 credentialsId: params.GIT_CREDENTIAL_ID,
+        //                 usernameVariable: 'GIT_USER',
+        //                 passwordVariable: 'GIT_PASS'
+        //             )]) {
+        //                 def cleanUrl = params.DOCUSAURUS_REPO.replaceAll('^https?://', '')
+        //                 sh """
+        //                     rm -rf * .git
+        //                     git clone https://\${GIT_USER}:\${GIT_PASS}@${cleanUrl} .
+        //                 """
+        //             }
+        //         }
+        //     }
+        // }
         stage('Process Content Repos') {
             steps {
                 script {
