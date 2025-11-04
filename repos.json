@@ -1,5 +1,6 @@
 [
   {
+    "label": "Telco CICD & O-Cloud",
     "name": "project-alpha",
     "url": "https://github.com/motangpuar/c-ran-installation",
     "docs_path": "docs",

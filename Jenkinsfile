@@ -67,35 +67,15 @@ pipeline {
                                 cd temp
                                 git clone https://\${GIT_USER}:\${GIT_PASS}@${cleanRepoUrl} ${repo.name}
                                 cd ..
-
-                                echo "Cloned repo structure:"
-                                ls -la temp/${repo.name}/
-
                                 mkdir -p ${repo.target_path}
-
-                                # Copy docs folder
-                                if [ -d "temp/${repo.name}/${repo.docs_path}" ]; then
-                                    cp -r temp/${repo.name}/${repo.docs_path}/* ${repo.target_path}/
-                                fi
-
-                                # Copy assets folder if it exists
-                                if [ -d "temp/${repo.name}/assets" ]; then
-                                    cp -r temp/${repo.name}/assets ${repo.target_path}/
-                                fi
-
-                                # Copy static folder if it exists
-                                if [ -d "temp/${repo.name}/static" ]; then
-                                    cp -r temp/${repo.name}/static ${repo.target_path}/
-                                fi
-
-                                echo "Final structure of ${repo.target_path}:"
-                                ls -la ${repo.target_path}
+                                cp -r temp/${repo.name}/${repo.docs_path}/* ${repo.target_path}/
+                                echo "Copied ${repo.name} to ${repo.target_path}"
                             """
                         }
                     }
 
                     sh 'rm -rf temp'
-                    sh 'find docs -type f | head -30'
+                    sh 'find docs -type f | head -20'
                 }
             }
         }
