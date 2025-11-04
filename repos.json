@@ -5,12 +5,5 @@
     "url": "https://github.com/motangpuar/c-ran-installation",
     "docs_path": "docs",
     "target_path": "docs/project-alpha"
-  },
-  {
-    "label": "Baremetal GNB Integrations",
-    "name": "summer-notes",
-    "url": "https://github.com/bmw-ece-ntust/summer-integration-oai.git",
-    "docs_path": "",
-    "target_path": "docs/summer-notes"
   }
 ]

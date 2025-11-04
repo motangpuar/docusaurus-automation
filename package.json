@@ -11,7 +11,9 @@
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
-    "write-heading-ids": "docusaurus write-heading-ids"
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "lint:mdx": "remark docs/ --frail",
+    "format:mdx": "remark docs/ --output"
   },
   "dependencies": {
     "@docusaurus/core": "3.9.2",
@@ -24,12 +26,16 @@
     "prism-react-renderer": "^2.3.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "remark": "^15.0.1",
     "remark-github-blockquote-alert": "^2.0.0",
     "remark-tooltip": "^0.1.1"
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "3.9.2",
-    "@docusaurus/types": "3.9.2"
+    "@docusaurus/types": "3.9.2",
+    "remark-cli": "^12.0.1",
+    "remark-lint": "^10.0.1",
+    "remark-mdx": "^3.1.1"
   },
   "browserslist": {
     "production": [
