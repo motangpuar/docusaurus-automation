@@ -5,7 +5,7 @@
     "url": "https://github.com/motangpuar/c-ran-installation",
     "docs_path": "docs",
     "target_path": "docs/project-alpha"
-  }
+  },
   {
     "label": "Baremetal GNB Integrations",
     "name": "summer-notes",
